@@ -1,0 +1,16 @@
+{
+  "suite": "Visitor flows in jsdom; dialog/clipboard browser APIs simulated",
+  "passed": true,
+  "results": [
+    {
+      "site": "triple-threads",
+      "passed": 20,
+      "catalogue": 4,
+      "gallery": 9
+    }
+  ],
+  "limitations": [
+    "No native browser rendering or mobile screenshots: Computer Use native pipe unavailable.",
+    "IIS execution and HTTPS issuance require the target Windows VPS."
+  ]
+}
