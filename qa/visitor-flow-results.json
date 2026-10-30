@@ -1,16 +1,29 @@
 {
-  "suite": "Visitor flows in jsdom; dialog/clipboard browser APIs simulated",
+  "suite": "Playwright (Chromium) against the published ASP.NET Core build, run locally on Kestrel",
+  "date": "2026-10-30",
   "passed": true,
   "results": [
     {
       "site": "triple-threads",
-      "passed": 20,
-      "catalogue": 4,
-      "gallery": 9
+      "checks_passed": 86,
+      "checks_failed": 0,
+      "pieces": 4,
+      "gallery_photos": 9
     }
   ],
+  "covered": [
+    "every page at 1366px and 390px wide: no script errors, no broken images, no sideways scrolling",
+    "navigation, mobile menu (open, Escape, outside click), 404 page",
+    "quick add, piece details, preferences, quantity limits, thumbnails, deep links",
+    "saved picks: drawer, quantity, remove, clear, persistence, sync between tabs",
+    "WhatsApp draft links and copy to clipboard (secure and plain-http fallback)",
+    "collection filters, search, sort and shareable URLs",
+    "gallery lightbox: buttons, arrow keys, wrap-around, backdrop close",
+    "contact enquiry draft and validation; no personal data in URLs",
+    "old .html links redirect; security headers; noindex; compression; caching",
+    "Let's Encrypt validation files served; config and binaries not downloadable"
+  ],
   "limitations": [
-    "No native browser rendering or mobile screenshots: Computer Use native pipe unavailable.",
-    "IIS execution and HTTPS issuance require the target Windows VPS."
+    "IIS, public DNS and certificate issuance must be checked on the Windows VPS."
   ]
 }

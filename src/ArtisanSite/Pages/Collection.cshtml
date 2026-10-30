@@ -1,0 +1,51 @@
+@page
+@{
+    ViewData["Nav"] = "collection";
+    ViewData["Title"] = "Collection";
+    ViewData["CanonicalPath"] = "/collection";
+    ViewData["Description"] = "Browse pictured pieces, filter the collection and save photo references for a personal enquiry.";
+}
+<partial name="_PageIntro" model="@(new PageIntro("The collection", "Find your next<br><em>favourite detail.</em>", Studio.CollectionIntro))" />
+
+<section class="wrap collection-section">
+    <div class="catalogue-tools">
+        <div class="search-row">
+            <div class="field search-field">
+                <label for="collection-search">Search the collection</label>
+                <input id="collection-search" type="search" maxlength="100" placeholder="Try a colour, piece or detail…" autocomplete="off">
+            </div>
+            <div class="field sort-field">
+                <label for="collection-sort">Sort by</label>
+                <select id="collection-sort">
+                    <option value="featured">Featured order</option>
+                    <option value="az">Name: A to Z</option>
+                    <option value="za">Name: Z to A</option>
+                </select>
+            </div>
+        </div>
+        <div class="filter-row" role="group" aria-label="Collection categories">
+            @foreach (var category in Studio.Categories.Prepend("All"))
+            {
+                <button type="button" class="filter" data-filter="@category" aria-pressed="@(category == "All" ? "true" : "false")">@category</button>
+            }
+        </div>
+    </div>
+    <div class="catalogue-status">
+        <p id="result-count" aria-live="polite">@Studio.Pieces.Count photo collections</p>
+        <button type="button" class="reset" data-reset>Reset filters</button>
+    </div>
+    <div class="cards collection-grid" id="collection-grid">
+        @foreach (var piece in Studio.Pieces)
+        {
+            <partial name="_Card" model="piece" />
+        }
+    </div>
+    <div class="empty" id="collection-empty" hidden>
+        <h2>A different kind of search?</h2>
+        <p class="small">No photo references match. Try another word or explore every category.</p>
+        <button type="button" class="btn secondary" data-reset>Show all pieces</button>
+    </div>
+    <p class="catalogue-note">These are descriptive labels for pictured work, rather than a live stock catalogue. A photo may show more than one piece. Availability, specifications, price and any customisation are confirmed directly with the makers.</p>
+</section>
+
+<partial name="_Closing" />

@@ -1,0 +1,15 @@
+@model Piece
+@{
+    var cover = Studio.PhotoAt(Model.Photos[0]);
+}
+<article class="card" data-card="@Model.Id">
+    <div class="card-image">
+        <button type="button" class="card-open" data-piece="@Model.Id" aria-label="View @Model.Title">
+            @Html.Photo(cover, sizes: "(max-width: 800px) 50vw, 300px")
+        </button>
+        <button class="card-quick" type="button" data-piece="@Model.Id" aria-label="Add @Model.Title to my picks"><span aria-hidden="true">+</span></button>
+    </div>
+    <p class="card-category">@Model.Category</p>
+    <h3><button type="button" data-piece="@Model.Id">@Model.Title</button></h3>
+    <p class="card-tail">Explore &amp; enquire ↗</p>
+</article>

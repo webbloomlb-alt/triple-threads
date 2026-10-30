@@ -1,9 +1,19 @@
-__pycache__/
-*.pyc
-.venv/
-node_modules/
+# .NET build output (the deployable build lives in publish/ and IS committed)
+bin/
+obj/
+.vs/
+*.user
+
+# Created on the server, never committed (keeps Update-Website.ps1 working)
+publish/app_offline.htm
+publish/logs/
+publish/.well-known/
+dist/.well-known/
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
 .env
 .env.*
 *.zip
-.DS_Store
-Thumbs.db
+__pycache__/

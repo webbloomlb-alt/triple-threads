@@ -1,0 +1,33 @@
+@model string
+@{
+    var links = new (string Key, string Page, string Label)[]
+    {
+        ("home", "/Index", "Home"),
+        ("collection", "/Collection", "Collection"),
+        ("gallery", "/Gallery", "Gallery"),
+        ("about", "/About", "Our story"),
+        ("contact", "/Contact", "Contact"),
+    };
+}
+<header class="header">
+    <div class="wrap nav">
+        <a class="brand" asp-page="/Index" aria-label="@Studio.Name home">
+            <img src="~/assets/logo.jpg" alt="" width="48" height="48">
+            <span class="brand-name">@Studio.Name<small>Handmade in Lebanon</small></span>
+        </a>
+        <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+            @foreach (var link in links)
+            {
+                <a asp-page="@link.Page" aria-current="@(link.Key == Model ? "page" : null)">@link.Label</a>
+            }
+        </nav>
+        <button class="icon-button picks-button" type="button" data-open-picks aria-label="Open my picks, 0 selected">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z" /><path d="M8 8V6a4 4 0 0 1 8 0v2" /></svg>
+            <span class="picks-label">My picks</span>
+            <span class="count" data-picks-count>0</span>
+        </button>
+        <button type="button" class="icon-button menu-toggle" id="menu-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Menu">
+            <span class="menu-icon" aria-hidden="true"></span>Menu
+        </button>
+    </div>
+</header>

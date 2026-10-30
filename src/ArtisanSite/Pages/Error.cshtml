@@ -1,0 +1,13 @@
+@page "/error"
+@{
+    Response.StatusCode = 500;
+    ViewData["Title"] = "Something went wrong";
+}
+<div class="wrap status-page">
+    <span class="eyebrow">Error</span>
+    <h1>Something got<br><em>a little tangled.</em></h1>
+    <p class="lede">Please try again in a moment. You can still reach the makers by phone on <a href="tel:@Studio.Phone">@Studio.PhoneDisplay</a>.</p>
+    <div class="actions">
+        <a class="btn" asp-page="/Index">Back to the home page</a>
+    </div>
+</div>

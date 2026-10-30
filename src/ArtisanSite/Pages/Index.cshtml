@@ -1,0 +1,81 @@
+@page
+@{
+    ViewData["Nav"] = "home";
+    ViewData["CanonicalPath"] = "/";
+    var hero = Studio.PhotoAt(Studio.HeroPhoto);
+    var inset = Studio.PhotoAt(Studio.InsetPhoto);
+    var story = Studio.PhotoAt(Studio.StoryPhoto);
+}
+<div class="wrap">
+    <section class="hero hero-@Studio.Theme">
+        <div class="hero-copy">
+            <span class="eyebrow">@Studio.Eyebrow</span>
+            <h1>@Html.Raw(Studio.Headline)</h1>
+            <p class="lede">@Studio.Intro</p>
+            <div class="actions">
+                <a class="btn" asp-page="/Collection">Explore the collection <span aria-hidden="true">↗</span></a>
+                <a class="btn secondary" asp-page="/Contact">Share an idea</a>
+            </div>
+            <p class="hero-note">Real craft. A direct conversation with the maker.</p>
+        </div>
+        <div class="hero-visual">
+            @Html.Photo(hero, "hero-main", "(max-width: 580px) 90vw, 50vw", eager: true)
+            @Html.Photo(inset, "hero-inset", "(max-width: 580px) 35vw, 220px")
+            <span class="hero-decoration" aria-hidden="true">@Html.Raw(Studio.Stamp)</span>
+            <span class="photo-tag">@Studio.PhotoTag</span>
+        </div>
+    </section>
+</div>
+
+<div class="strip">
+    <div class="wrap strip-inner">
+        <span>Made by hand</span>
+        <span>From @Studio.Location</span>
+        <span>Enquire directly</span>
+    </div>
+</div>
+
+<section class="section">
+    <div class="wrap">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">A few things to fall for</span>
+                <h2>Little details.<br><em>Lasting impressions.</em></h2>
+            </div>
+            <a class="text-link" asp-page="/Collection">View the collection</a>
+        </div>
+        <div class="cards">
+            @foreach (var piece in Studio.FeaturedPieces)
+            {
+                <partial name="_Card" model="piece" />
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section soft-section">
+    <div class="wrap story-band">
+        <div>@Html.Photo(story, "story-photo", "(max-width: 580px) 100vw, 50vw")</div>
+        <div class="story-copy">
+            <span class="eyebrow">@Studio.StoryLabel</span>
+            <h2>@Html.Raw(Studio.StoryTitle)</h2>
+            <p class="lede">@Studio.StoryShort</p>
+            <a class="text-link" asp-page="/About">Read our story</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="wrap">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">From browsing to a conversation</span>
+                <h2>See something<br>that feels <em>like you?</em></h2>
+            </div>
+            <p class="small">The photographs are a starting point. The maker can help you explore what comes next.</p>
+        </div>
+        <partial name="_Steps" />
+    </div>
+</section>
+
+<partial name="_Closing" />

@@ -1,0 +1,146 @@
+{
+  "slug": "triple-threads",
+  "name": "Triple Threads",
+  "theme": "triple",
+  "phone": "+9613538252",
+  "phoneDisplay": "+961 3 538 252",
+  "email": null,
+  "instagram": "https://www.instagram.com/triplethreads.lb/",
+  "instagramHandle": "@triplethreads.lb",
+  "location": "Sahel Aalma, Jounieh",
+  "makers": "Reine, Laure & Yara Abi Hanna",
+  "address": "Sunrise Hotel Street, Les Terrace de Sahel, Block C, 3rd Floor, Sahel Aalma, Jounieh, Lebanon",
+  "mapUrl": "https://www.google.com/maps?q=34.001282,35.650440",
+  "eyebrow": "Handmade with a playful spirit",
+  "headline": "Small stitches.<br>Big <em>personality.</em>",
+  "intro": "Cherries, sunshine and a little seaside spirit. Explore crochet, embroidery and beadwork by a mother and her two daughters in Lebanon.",
+  "photoTag": "A good day, in stitches",
+  "stamp": "Three makers<br>One family",
+  "heroPhoto": 5,
+  "insetPhoto": 6,
+  "storyPhoto": 1,
+  "featured": [
+    "flower-cherry-clutches",
+    "round-motif-pieces",
+    "seaside-motifs",
+    "cherries-sunshine"
+  ],
+  "storyLabel": "Meet the hands behind the threads",
+  "storyTitle": "A family story,<br><em>stitched together.</em>",
+  "storyShort": "Reine Abi Hanna and her daughters Laure and Yara share a love of making. Crochet, embroidery and beading become colourful clutches, accessories and pieces for everyday life.",
+  "storyLong": "Triple Threads is a family project led by Reine Abi Hanna with her daughters Laure and Yara. Their craft carries forward skills Reine learned from her mother, bringing crochet, embroidery and beading into a new family chapter.",
+  "storySecond": "Based in Sahel Aalma, Jounieh, the makers create across a varied world of accessories and home pieces. This collection focuses on the clutches, pouches and motif pieces pictured in their public portfolio.",
+  "statement": "A cherry here. A flower there.<br>Little details with a personality of their own.",
+  "visit": "Visits are by appointment. Contact the makers before coming.",
+  "closingTitle": "Let’s make it<br><em>personal.</em>",
+  "closingText": "A colour you love, an occasion to celebrate, a motif that feels like you. Start with a photograph and share your idea.",
+  "collectionIntro": "Colourful crochet collections and little motifs with a playful point of view. These photographs are inspiration for a conversation with the makers.",
+  "galleryIntro": "From the family behind the project to the stitches on the table. Explore the photographs and the details within them.",
+  "categories": [
+    "Clutches & pouches",
+    "Motif pieces"
+  ],
+  "photos": [
+    {
+      "file": "photo-01.jpg",
+      "width": 375,
+      "height": 500,
+      "title": "The makers and their crochet pieces",
+      "alt": "Laure, Reine and Yara with a display of crochet bags, clutches and round handmade pieces."
+    },
+    {
+      "file": "photo-02.jpg",
+      "width": 225,
+      "height": 300,
+      "title": "Navy stripes and red lobster motifs",
+      "alt": "Navy and cream striped crochet bags and a round piece with red lobster motifs."
+    },
+    {
+      "file": "photo-03.jpg",
+      "width": 225,
+      "height": 300,
+      "title": "Cherry motifs and sunshine",
+      "alt": "Crochet pouches in pink and natural tones with cherry motifs, beside a round yellow sun design."
+    },
+    {
+      "file": "photo-04.jpg",
+      "width": 300,
+      "height": 400,
+      "title": "Cherries and a pink flower",
+      "alt": "Natural crochet clutch with red cherries beside a striped pink and red floral design."
+    },
+    {
+      "file": "photo-05.jpg",
+      "width": 225,
+      "height": 300,
+      "title": "Crochet and embroidered details",
+      "alt": "Pink floral crochet clutch beside a striped lobster pouch and a cream cherry embroidered piece."
+    },
+    {
+      "file": "photo-06.jpg",
+      "width": 375,
+      "height": 500,
+      "title": "A pink piece taking shape",
+      "alt": "Hands working with a crochet hook on a pink crochet piece."
+    },
+    {
+      "file": "photo-07.jpg",
+      "width": 282,
+      "height": 500,
+      "title": "Working stitch by stitch",
+      "alt": "Hands crocheting a natural tan piece with a red crochet hook."
+    },
+    {
+      "file": "photo-08.jpg",
+      "width": 375,
+      "height": 500,
+      "title": "Small details in red",
+      "alt": "Close-up of hands crocheting a small red shape with a gold-colored hook."
+    },
+    {
+      "file": "photo-09.jpg",
+      "width": 225,
+      "height": 300,
+      "title": "Playful round crochet designs",
+      "alt": "Round crochet pieces with fish, sun, citrus and olive motifs beside small handmade charms."
+    }
+  ],
+  "pieces": [
+    {
+      "id": "seaside-motifs",
+      "title": "Seaside motifs",
+      "category": "Clutches & pouches",
+      "description": "Navy stripes, cream crochet and bright red lobster motifs. Tell the makers which piece in this photograph catches your eye.",
+      "photos": [
+        2
+      ]
+    },
+    {
+      "id": "cherries-sunshine",
+      "title": "Cherries & sunshine",
+      "category": "Clutches & pouches",
+      "description": "Cherry details on pink and natural tones, alongside a yellow sun motif. A collection of cheerful photo references to discuss.",
+      "photos": [
+        3
+      ]
+    },
+    {
+      "id": "flower-cherry-clutches",
+      "title": "Flower & cherry clutches",
+      "category": "Clutches & pouches",
+      "description": "A pink and red floral clutch beside a tan clutch with cherry details. Share your preferred motif and palette with the makers.",
+      "photos": [
+        4
+      ]
+    },
+    {
+      "id": "round-motif-pieces",
+      "title": "Round motif pieces",
+      "category": "Motif pieces",
+      "description": "Fish, sunshine, citrus and olive-inspired details on round crochet pieces. Confirm each piece's use, size and availability directly.",
+      "photos": [
+        9
+      ]
+    }
+  ]
+}

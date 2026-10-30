@@ -1,0 +1,17 @@
+@page "/status/{code:int}"
+@{
+    var code = Convert.ToInt32(RouteData.Values["code"]);
+    if (code is < 400 or > 599) code = 404;
+    Response.StatusCode = code;
+    var notFound = code == 404;
+    ViewData["Title"] = notFound ? "Page not found" : "Something went wrong";
+}
+<div class="wrap status-page">
+    <span class="eyebrow">@(notFound ? "Error 404" : $"Error {code}")</span>
+    <h1>@(notFound ? "This page has" : "Something got")<br><em>@(notFound ? "slipped a stitch." : "a little tangled.")</em></h1>
+    <p class="lede">@(notFound ? "The address may be mistyped, or the page has moved. Everything else is right where you left it." : "Please try again in a moment.")</p>
+    <div class="actions">
+        <a class="btn" asp-page="/Index">Back to the home page</a>
+        <a class="btn secondary" asp-page="/Collection">Explore the collection</a>
+    </div>
+</div>
