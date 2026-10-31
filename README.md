@@ -1,66 +1,78 @@
 # Triple Threads
 
-Independent, portable website demo for Triple Threads in Lebanon. Five static pages,
-real portfolio photos, collection filters, saved photo references and enquiry
-drafts. Static HTML/CSS/JavaScript; no server runtime or build on the VPS.
+Website for **Triple Threads** — Reine, Laure & Yara Abi Hanna, Sahel Aalma, Jounieh, Lebanon.
+Built with **ASP.NET Core 10** (Razor Pages) and ready to run on **IIS**.
 
-## IIS
+Address after setup: **https://triple-threads.duckdns.org** · IIS site name: **TripleThreads**
 
-Domain: **triple-threads.duckdns.org**. Site: **TripleThreads**.
-IIS physical root: this repository's **dist** folder.
+Five pages (home, collection, gallery, our story, contact), a filterable
+collection, a photo lightbox, “My picks” saved in the visitor's browser, and an
+enquiry form that prepares a WhatsApp or Instagram message. No database, no
+payments, no tracking.
 
-On the VPS, clone this repository once into:
-C:\Sites\BusinessWebsites\triple-threads
+## What's in this repository
 
-In Administrator PowerShell:
+| Folder / file | What it is |
+| --- | --- |
+| `publish/` | The ready-built website. **IIS points at this folder.** |
+| `src/ArtisanSite/Content/business.json` | All wording, contact details, categories, pieces and photo captions |
+| `src/ArtisanSite/wwwroot/assets/` | Photos, logo and the social-share image |
+| `src/ArtisanSite/Pages/` | Page templates (`.cshtml`) |
+| `src/ArtisanSite/wwwroot/site.css`, `site.js` | Styles and behaviour |
+| `src/ArtisanSite/appsettings.json` | Switches: public address, search engines, HTTPS redirect |
+| `deployment/` | IIS install, update and publish scripts, plus full instructions |
+| `research/` | Where the photos and facts came from |
 
-    & "C:\Sites\BusinessWebsites\triple-threads\deployment\Install-IIS.ps1"
+## Put it on IIS (first time)
 
-Test HTTP first, then use the existing simple-acme installation to issue a
-certificate for **this domain only**. The HTTPS binding requires port 443,
-this exact hostname and SNI. See [complete IIS instructions](deployment/README.txt).
+1. On the server, install the **ASP.NET Core 10 Hosting Bundle** once
+   ([download page](https://dotnet.microsoft.com/download/dotnet/10.0) → “Hosting Bundle”),
+   then restart IIS with `net stop was /y` and `net start w3svc`.
+2. Clone this repository to `C:\Sites\BusinessWebsites\triple-threads`.
+3. In Administrator PowerShell:
 
-For future updates:
+   ```powershell
+   & "C:\Sites\BusinessWebsites\triple-threads\deployment\Install-IIS.ps1"
+   ```
 
-    & "C:\Sites\BusinessWebsites\triple-threads\deployment\Update-Website.ps1"
+4. Open `http://triple-threads.duckdns.org/`, then add HTTPS with simple-acme.
 
-This pulls changed Git objects with --ff-only and refuses uncommitted local
-changes. No full ZIP download, npm build or IIS restart is needed.
+Every step, with troubleshooting, is in [deployment/README.txt](deployment/README.txt).
 
-## Local preview and editing
+## Update the live site
 
-    python -m http.server 8770 --bind 127.0.0.1 --directory dist
+```powershell
+& "C:\Sites\BusinessWebsites\triple-threads\deployment\Update-Website.ps1"
+```
 
-Open http://127.0.0.1:8770/. Edit source/site.css, source/site.js and the
-business content in source/businesses.json. Rebuild with Python and Pillow:
+Downloads only what changed and swaps it in within a few seconds. No IIS restart.
 
-    python -m pip install -r requirements.txt
-    python source/build.py
+## Change text or photos
 
-After a rebuild, apply metadata:
+1. Edit `src/ArtisanSite/Content/business.json` (and photos in `wwwroot/assets`).
+2. Preview with the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0):
+   `dotnet run --project src/ArtisanSite` → http://localhost:5080
+3. Rebuild the deployable folder: `.\deployment\Publish-Site.ps1`
+   (or `deployment/publish.sh` on macOS/Linux).
+4. Commit `src` and `publish` together, push, then run Update-Website on the server.
 
-    & .\deployment\Set-PublicUrl.ps1 -BaseUrl "https://triple-threads.duckdns.org"
+If `business.json` has a mistake (a missing photo, a piece in an unknown
+category, a typo in the JSON), the site refuses to start and the message names
+the problem — so preview before pushing.
 
-Commit source and regenerated dist together. Contact details and photos load
-locally; no Instagram hotlinks, external fonts, analytics or payment services.
+## Switches in `appsettings.json`
 
-## Scope and validation
+| Setting | Now | Meaning |
+| --- | --- | --- |
+| `PublicUrl` | `https://triple-threads.duckdns.org` | Used for share previews and canonical links |
+| `AllowSearchEngines` | `false` | Keeps the site out of Google (robots.txt, meta tag, header). Set `true` only after the business approves a public launch. |
+| `ForceHttps` | `false` | Set `true` after the HTTPS certificate works, to send visitors to https:// |
 
-Photos illustrate previous work; labels are descriptive, rather than confirmed
-official product names. Current prices, stock, materials and timing must be
-confirmed with the makers. The contact form builds a local draft; it sends
-nothing. WhatsApp availability of the public phone is unverified; copy,
-Instagram and call alternatives are provided.
+## Demo status
 
-Visitor-flow DOM tests and static asset checks passed. Browser dialog/clipboard
-APIs were simulated in the DOM tests. Native browser/mobile layout QA was
-unavailable because the Computer Use native pipe failed. Target IIS execution
-and HTTPS issuance have not been performed locally.
-
-No matching standalone business website was found in bounded public research,
-but absence is not owner-confirmed. This is an independent demo; no owner
-approval or image republication license was established. Research and source
-provenance are in [business notes](BUSINESS-NOTES.txt) and research/.
-
-Preview indexing is disabled in **HTML, robots.txt and web.config**. Remove all
-three noindex mechanisms only for an approved business launch.
+This is an independent demo built from the business's public portfolio. Owner
+approval and permission to reuse the photos have not been obtained; prices,
+stock, materials and delivery are deliberately not stated on the site. WhatsApp
+availability of the public phone number is unverified, so copy, Instagram and
+call alternatives are always offered. Details: [BUSINESS-NOTES.txt](BUSINESS-NOTES.txt)
+and `research/`.

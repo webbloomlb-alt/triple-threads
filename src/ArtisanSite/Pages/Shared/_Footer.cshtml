@@ -1,0 +1,36 @@
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer-grid">
+            <div>
+                <a class="footer-brand" asp-page="/Index"><img src="~/assets/logo.jpg" alt="" width="40" height="40" loading="lazy">@Studio.Name</a>
+                <p>Handmade pieces, little details, and a conversation with the people who make them.</p>
+                <p>@Studio.Location, Lebanon</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Take a look</h2>
+                <ul>
+                    <li><a asp-page="/Collection">Explore the collection</a></li>
+                    <li><a asp-page="/Gallery">Photo journal</a></li>
+                    <li><a asp-page="/About">Meet the makers</a></li>
+                    <li><a asp-page="/Contact">Start an enquiry</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-heading">Keep in touch</h2>
+                <ul>
+                    <li><a href="@Studio.Instagram" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+                    <li><a href="tel:@Studio.Phone">@Studio.PhoneDisplay</a></li>
+                    @if (!string.IsNullOrEmpty(Studio.Email))
+                    {
+                        <li><a href="mailto:@Studio.Email">Email the makers</a></li>
+                    }
+                    <li><a href="@Studio.MapUrl" target="_blank" rel="noopener noreferrer">Location ↗</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Independent website preview. Photos show portfolio examples; confirm prices and availability directly.</p>
+            <a href="#main" class="back-to-top">Back to top ↑</a>
+        </div>
+    </div>
+</footer>

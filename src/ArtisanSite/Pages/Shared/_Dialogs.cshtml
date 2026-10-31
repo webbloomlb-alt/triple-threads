@@ -1,0 +1,70 @@
+@{
+    var firstPiece = Studio.Pieces[0];
+    var firstPhoto = Studio.PhotoAt(firstPiece.Photos[0]);
+    var firstGallery = Studio.Photos[0];
+}
+<dialog id="product-dialog" class="product-dialog" aria-labelledby="piece-title">
+    <button type="button" class="dialog-close" data-close aria-label="Close piece details">×</button>
+    <div class="product-content">
+        <div class="product-images">
+            <img id="piece-image" src="~/assets/@firstPhoto.File" alt="" width="@firstPhoto.Width" height="@firstPhoto.Height">
+            <div class="thumbs" id="piece-thumbs"></div>
+        </div>
+        <div class="product-info">
+            <span id="piece-category" class="eyebrow"></span>
+            <h2 id="piece-title">Piece details</h2>
+            <p id="piece-description"></p>
+            <form id="piece-form">
+                <div class="preference-fields">
+                    <div class="field"><label for="piece-colour">Preferred colour</label><input id="piece-colour" maxlength="100" placeholder="e.g. warm neutrals" autocomplete="off"></div>
+                    <div class="field"><label for="piece-size">Preferred size</label><input id="piece-size" maxlength="100" placeholder="Your dimensions or idea" autocomplete="off"></div>
+                    <div class="field"><label for="piece-qty">Quantity to ask about</label><input id="piece-qty" type="number" inputmode="numeric" min="1" max="20" step="1" value="1" required></div>
+                    <div class="field"><label for="piece-notes">Notes (optional)</label><textarea id="piece-notes" maxlength="500" placeholder="Which detail caught your eye?"></textarea></div>
+                </div>
+                <button class="btn" type="submit">Add to my picks <span aria-hidden="true">+</span></button>
+            </form>
+            <p class="small">A photo reference, not a stock listing. Preferences are requests for discussion. Current options, price and timing are confirmed by the maker.</p>
+            <p class="small"><a id="piece-share" asp-page="/Collection">Link to this photo reference ↗</a></p>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="picks-dialog" class="drawer" aria-labelledby="picks-title">
+    <div class="drawer-head">
+        <h2 id="picks-title">Your little collection</h2>
+        <button class="dialog-close" type="button" data-close aria-label="Close my picks">×</button>
+        <p class="small">Photo references for your next conversation.</p>
+    </div>
+    <div class="drawer-body">
+        <div id="picks-empty" class="empty">
+            <h3>What catches your eye?</h3>
+            <p class="small">Explore a piece and add it here. Your picks stay in this browser.</p>
+            <a class="btn" id="continue-browsing" asp-page="/Collection">Keep exploring</a>
+        </div>
+        <ul class="picks-list" id="picks-list"></ul>
+        <div class="picks-footer" id="picks-footer" hidden>
+            <p class="small">No payment is taken here. Review your request with the maker to confirm details.</p>
+            <a class="btn" id="picks-whatsapp" href="@Studio.WhatsAppUrl" target="_blank" rel="noopener noreferrer">Open WhatsApp draft ↗</a>
+            <button class="btn secondary" type="button" id="picks-copy">Copy my request</button>
+            <a class="btn secondary" asp-page="/Contact">Add a personal message</a>
+            <p class="small">If this number is unavailable on WhatsApp, copy your request and <a href="@Studio.Instagram" target="_blank" rel="noopener noreferrer">message on Instagram</a> or <a href="tel:@Studio.Phone">call the maker</a>.</p>
+            <button class="reset" type="button" id="clear-picks">Clear all picks</button>
+        </div>
+    </div>
+</dialog>
+
+<dialog class="gallery-dialog" id="gallery-dialog" aria-labelledby="lightbox-caption">
+    <button type="button" class="dialog-close" data-close aria-label="Close photograph">×</button>
+    <figure class="lightbox-figure">
+        <img id="lightbox-image" src="~/assets/@firstGallery.File" alt="" width="@firstGallery.Width" height="@firstGallery.Height">
+        <figcaption id="lightbox-caption">Photo details</figcaption>
+    </figure>
+    <div class="lightbox-controls">
+        <button class="icon-button" type="button" id="gallery-prev" aria-label="Previous photograph">← Previous</button>
+        <span id="lightbox-count" aria-live="polite"></span>
+        <button class="icon-button" type="button" id="gallery-next" aria-label="Next photograph">Next →</button>
+    </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<textarea id="copy-fallback" aria-label="Request to copy" class="copy-fallback" readonly hidden></textarea>

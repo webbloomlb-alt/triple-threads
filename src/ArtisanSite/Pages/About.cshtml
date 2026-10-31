@@ -1,0 +1,42 @@
+@page
+@{
+    ViewData["Nav"] = "about";
+    ViewData["Title"] = "Our story";
+    ViewData["CanonicalPath"] = "/about";
+    ViewData["Description"] = "Meet the makers and discover the story behind the handmade work.";
+}
+<partial name="_PageIntro" model="@(new PageIntro("Our story", Studio.StoryTitle, $"Meet {Studio.Makers}, the hands behind {Studio.Name}."))" />
+
+<section class="section about-section">
+    <div class="wrap story-layout">
+        <div>@Html.Photo(Studio.PhotoAt(Studio.StoryPhoto), sizes: "(max-width: 580px) 100vw, 50vw")</div>
+        <div>
+            <span class="eyebrow">@Studio.StoryLabel</span>
+            <h2>A thread<br>worth <em>following.</em></h2>
+            <p>@Studio.StoryLong</p>
+            <p>@Studio.StorySecond</p>
+            <div class="story-details">
+                <p><strong>Made in @Studio.Location, Lebanon.</strong></p>
+                <p>@Studio.Visit</p>
+            </div>
+            <div class="actions">
+                <a class="btn" asp-page="/Collection">Explore the work ↗</a>
+                <a class="btn secondary" href="@Studio.Instagram" target="_blank" rel="noopener noreferrer">Visit Instagram ↗</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section soft-section">
+    <div class="wrap"><p class="quote-panel">@Html.Raw(Studio.Statement)</p></div>
+</section>
+
+<section class="section">
+    <div class="wrap">
+        <span class="eyebrow">A personal way to enquire</span>
+        <h2>Begin with<br><em>a little inspiration.</em></h2>
+        <partial name="_Steps" />
+    </div>
+</section>
+
+<partial name="_Closing" />

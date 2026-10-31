@@ -1,0 +1,26 @@
+@page
+@{
+    ViewData["Nav"] = "gallery";
+    ViewData["Title"] = "Gallery";
+    ViewData["CanonicalPath"] = "/gallery";
+    ViewData["Description"] = "Explore the textures, details and real photographs behind the handmade work.";
+    var total = Studio.Photos.Count;
+}
+<partial name="_PageIntro" model="@(new PageIntro("The photo journal", "A closer look<br>at the <em>little things.</em>", Studio.GalleryIntro))" />
+
+<section class="wrap section gallery-section">
+    <div class="gallery-grid">
+        @for (var i = 0; i < total; i++)
+        {
+            var photo = Studio.Photos[i];
+            <figure class="gallery-tile">
+                <button type="button" data-gallery="@i" aria-label="Open photograph: @photo.Title">
+                    @Html.Photo(photo, sizes: "(max-width: 580px) 50vw, (max-width: 800px) 50vw, 400px")
+                </button>
+                <figcaption>@photo.Title<span>@((i + 1).ToString("00")) / @total.ToString("00")</span></figcaption>
+            </figure>
+        }
+    </div>
+</section>
+
+<partial name="_Closing" />

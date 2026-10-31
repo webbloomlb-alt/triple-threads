@@ -1,0 +1,7 @@
+@model PageIntro
+<div class="wrap page-intro">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a asp-page="/Index">Home</a> <span aria-hidden="true">/</span> <span aria-current="page">@Model.Eyebrow</span></nav>
+    <span class="eyebrow">@Model.Eyebrow</span>
+    <h1>@Html.Raw(Model.TitleHtml)</h1>
+    <p class="lede">@Model.Lede</p>
+</div>

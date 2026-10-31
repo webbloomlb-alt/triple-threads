@@ -1,0 +1,101 @@
+@page
+@{
+    ViewData["Nav"] = "contact";
+    ViewData["Title"] = "Contact";
+    ViewData["CanonicalPath"] = "/contact";
+    ViewData["Description"] = "Contact the makers, ask about current options and prepare a personal enquiry.";
+}
+<partial name="_PageIntro" model="@(new PageIntro("Get in touch", "Let’s start with<br><em>your idea.</em>", "A piece you love, an occasion coming up, or a corner in need of texture. Tell the makers what you have in mind."))" />
+
+<section class="wrap contact-layout">
+    <div>
+        <div class="contact-card">
+            <h2>Speak to the maker</h2>
+            <p>@Studio.Makers</p>
+            <p><a href="tel:@Studio.Phone">@Studio.PhoneDisplay</a></p>
+        </div>
+        <div class="contact-card">
+            <h2>On Instagram</h2>
+            <p><a href="@Studio.Instagram" target="_blank" rel="noopener noreferrer">@Studio.InstagramHandle ↗</a></p>
+            <p class="small">Browse the latest posts or send a direct message.</p>
+        </div>
+        @if (!string.IsNullOrEmpty(Studio.Email))
+        {
+            <div class="contact-card">
+                <h2>Email</h2>
+                <p><a href="mailto:@Studio.Email">@Studio.Email</a></p>
+            </div>
+        }
+        <div class="contact-card">
+            <h2>Find us</h2>
+            <p>@Studio.Address</p>
+            <p class="small">@Studio.Visit</p>
+            <p><a href="@Studio.MapUrl" target="_blank" rel="noopener noreferrer">View location ↗</a></p>
+        </div>
+    </div>
+
+    <div class="enquiry-panel">
+        <h2>A little about your idea</h2>
+        <p class="small enquiry-intro">Create a message draft to review, then open WhatsApp or copy it into Instagram.</p>
+        <form id="enquiry-form">
+            <div class="form-grid">
+                <div class="field">
+                    <label for="enquiry-name">Your name *</label>
+                    <input id="enquiry-name" required maxlength="100" autocomplete="name">
+                </div>
+                <div class="field">
+                    <label for="enquiry-interest">I’m interested in *</label>
+                    <select id="enquiry-interest" required>
+                        <option value="">Choose an area</option>
+                        @foreach (var category in Studio.Categories)
+                        {
+                            <option>@category</option>
+                        }
+                        <option>My saved picks</option>
+                        <option>A custom idea</option>
+                        <option>Something else</option>
+                    </select>
+                </div>
+                <div class="field full">
+                    <label for="enquiry-area">Delivery area (optional)</label>
+                    <input id="enquiry-area" maxlength="100" placeholder="Town or area in Lebanon" autocomplete="address-level2">
+                </div>
+                <div class="field full">
+                    <label for="enquiry-message">What do you have in mind? *</label>
+                    <textarea id="enquiry-message" required minlength="10" maxlength="2000" rows="5" placeholder="Tell us about a colour, size, occasion or piece you liked…"></textarea>
+                </div>
+                <label class="check full"><input type="checkbox" id="include-picks" checked> Include my saved photo references <span id="include-picks-count" class="small"></span></label>
+            </div>
+            <button type="submit" class="btn enquiry-submit">Prepare my enquiry ↗</button>
+            <p class="form-note">Nothing is sent by this form. Your name and message stay on this page until you choose to share them.</p>
+        </form>
+        <div class="draft-result" id="draft-result" hidden>
+            <h3>Your message, ready to review</h3>
+            <p class="small">The draft has not been sent. Review it below, then choose where to continue.</p>
+            <label class="visually-hidden" for="enquiry-draft">Your enquiry draft</label>
+            <textarea id="enquiry-draft" readonly></textarea>
+            <div class="actions">
+                <a class="btn" id="enquiry-whatsapp" href="@Studio.WhatsAppUrl" target="_blank" rel="noopener noreferrer">Open WhatsApp draft ↗</a>
+                <button type="button" class="btn secondary" id="enquiry-copy">Copy message</button>
+            </div>
+            <p class="form-note">If the number is unavailable on WhatsApp, copy the draft and <a href="@Studio.Instagram" target="_blank" rel="noopener noreferrer">message on Instagram</a>, or call the number above.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section soft-section">
+    <div class="wrap faq">
+        <span class="eyebrow">A few helpful details</span>
+        <h2>Before you <em>enquire.</em></h2>
+        <details><summary>How do I ask about a piece?</summary><p>Open a photo in the collection, add your preferences and save it to My picks. You can copy a request, open a WhatsApp draft or use the contact form to put your idea into words.</p></details>
+        <details><summary>Where are the prices and available sizes?</summary><p>The photos show portfolio examples. Ask the makers for the current price, sizing, materials and availability for the specific piece you have in mind.</p></details>
+        <details><summary>Can I request a different colour or a custom piece?</summary><p>You can describe your preferences in an enquiry. The makers will confirm which changes are possible, along with any price and timing details.</p></details>
+        <details><summary>What about delivery?</summary><p>Include your town or area in your message. Confirm current delivery coverage, fees and timing directly before placing an order.</p></details>
+        <details><summary>Can I visit?</summary><p>@Studio.Visit</p></details>
+    </div>
+</section>
+
+<section class="wrap privacy">
+    <h2>Your privacy</h2>
+    <p>Your saved picks use this browser’s local storage. You can clear them in My picks. This site uses no analytics, advertising cookies or contact-form server. WhatsApp, Instagram and Maps have their own privacy policies when you open them.</p>
+</section>

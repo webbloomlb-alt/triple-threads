@@ -1,0 +1,55 @@
+@inject Microsoft.Extensions.Options.IOptions<SiteOptions> SiteSettings
+@{
+    var options = SiteSettings.Value;
+    var nav = ViewData["Nav"] as string ?? "";
+    var pageTitle = ViewData["Title"] as string;
+    var title = string.IsNullOrEmpty(pageTitle) ? $"{Studio.Name} — Handmade in Lebanon" : $"{pageTitle} — {Studio.Name}";
+    var description = Studio.Name + ". " + (ViewData["Description"] as string ?? "Handmade craft in Lebanon. Explore real portfolio photographs and enquire directly with the makers.");
+    var baseUrl = options.BaseUrl(Context.Request);
+    var canonicalPath = ViewData["CanonicalPath"] as string;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@title</title>
+    <meta name="description" content="@description">
+    @if (!options.AllowSearchEngines)
+    {
+    <meta name="robots" content="noindex, nofollow">
+    }
+    <meta name="theme-color" content="@Studio.ThemeColor">
+    @if (canonicalPath is not null)
+    {
+    <link rel="canonical" href="@(baseUrl + canonicalPath)">
+    <meta property="og:url" content="@(baseUrl + canonicalPath)">
+    }
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="@Studio.Name">
+    <meta property="og:title" content="@title">
+    <meta property="og:description" content="@description">
+    <meta property="og:image" content="@(baseUrl)/assets/social-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="@Studio.Name — handmade in @Studio.Location, Lebanon">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="~/assets/logo.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="~/assets/logo.jpg">
+    <link rel="preload" href="~/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="~/site.css" asp-append-version="true">
+    <script src="~/site.js" asp-append-version="true" defer></script>
+</head>
+<body class="theme-@Studio.Theme">
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="ribbon">Handmade in Lebanon<span class="ribbon-extra"> &nbsp;·&nbsp; Explore the work. Start a conversation.</span></div>
+    <partial name="_Header" model="nav" />
+    <noscript><p class="noscript wrap">You can browse the photographs and contact the makers directly. Turn on JavaScript for search, photo details and saved picks.</p></noscript>
+    <main id="main">
+        @RenderBody()
+    </main>
+    <partial name="_Footer" />
+    <partial name="_Dialogs" />
+    <script id="studio-data" type="application/json">@Html.StudioData(Studio, Url.Page("/Collection")!)</script>
+</body>
+</html>
